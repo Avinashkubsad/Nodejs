@@ -7,7 +7,7 @@ import route from "./routes/userRoutes.js";
 
 const app = express();
 
-app.use(bodyParser.json());
+
 dotenv.config();
 
 const PORT = process.env.PORT || 5000;
@@ -28,4 +28,5 @@ mongoose
   })
   .catch((error) => console.log(error));
 
+  app.use(bodyParser.json());
 app.use("/api/user",route);

@@ -1,14 +1,14 @@
 import mongoose from "mongoose";
 
-const userSchema = new mongoose.schema({
+const userSchema = new mongoose.Schema({
     name : { type:String , required : true},
-    age:{ type:Boolean , required : true},
+    age:{ type:Number , required : true},
     phno:{ type:Number , required : true},
-    email:{type:String, reuired :true}
+    email:{type:String, required :true}
 
 })
 
-export default mongoose.Model("users",userSchema);
+export default mongoose.model("users",userSchema);
 
 
 
