@@ -77,6 +77,27 @@ export const readById = async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 };
+
+export const update = async(req,res) =>{
+  try{
+
+    const {id} = req.params;
+    console.log("id for update operation",id);
+
+
+    const userExist = await User.findOne({_id :id});
+
+
+     if (!userExist) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    const userUpdate = await User.findOneAndUpdate({_id :id},req.body,{new :true})
+    res.status(201).json(userUpdate);
+  }catch{
+
+  }
+}
 // export const readOne = async (req, res) => {
 //   try {
 //     const { id } = req.params;
