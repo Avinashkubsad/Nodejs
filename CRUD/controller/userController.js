@@ -95,9 +95,29 @@ export const update = async(req,res) =>{
     const userUpdate = await User.findOneAndUpdate({_id :id},req.body,{new :true})
     res.status(201).json(userUpdate);
   }catch{
-
+    res.status(500).json({ error: "Internal server error" });
   }
 }
+
+
+export const  deleteById = async (req,res)=>{
+   try{
+         const {id} = req.params;
+
+         const userExist = await User.findOne({_id :id});
+
+
+     if (!userExist) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    const userDelete = await User.findByIdAndDelete(id );
+    res.status(200).json(userDelete)
+   }catch{
+    res.status(500).json({error : "Internal server error" });
+   }
+}
+
 // export const readOne = async (req, res) => {
 //   try {
 //     const { id } = req.params;
